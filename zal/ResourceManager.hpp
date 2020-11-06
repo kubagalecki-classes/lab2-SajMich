@@ -5,7 +5,8 @@
 class ResourceManager
 {
   public:
-    Resource R;
+    Resource* R;
+
     double get(){return R.get()};
 
 

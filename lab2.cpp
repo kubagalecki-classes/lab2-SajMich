@@ -80,15 +80,6 @@ public:
         }
     }
 
-    Wektor pow2(Wektor&& arg)
-    {
-        Wektor ret_val{std::move(arg)};
-        for (int i = 0; i < dlugosc; i++) {
-            std::cout << i << "\n";
-        }
-        return ret_val;
-    }
-
     // przeciazanie operatorow
     double& operator[](int);
     Wektor& operator=(const Wektor&);
@@ -129,6 +120,7 @@ Wektor& Wektor::operator=(Wektor&& W)
     w         = std::move(W.w);
     dlugosc   = std::move(W.dlugosc);
     pojemnosc = std::move(W.pojemnosc);
+    return *this;
 }
 
 int main()
