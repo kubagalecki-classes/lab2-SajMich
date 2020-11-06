@@ -5,10 +5,13 @@
 class ResourceManager
 {
   public:
-    rozmiar sizeof(Resource);
     Resource* R;
 
 
+    //Konstruktor domyslny
+    ResourceManager(){};
+
+/*
     //Konstruktor kopiujacy
     ResourceManager(const ResourceManager& RM)
     {
@@ -17,46 +20,35 @@ class ResourceManager
     }
 
     //kopiujacy opertor przypisania//
-    ResourceManager& operator=(const ResourceManager&);
+    ResourceManager& operator=(const ResourceManager&)
+    {
+    return *this;
+    }
 
     //konstruktor przenoszacy//
     ResourceManager(ResourceManager&& RM)
     {
         R           = RM.R;
         RM.R         = nullptr;
+        delete RM.R;
     }
 
     //przenoszacy operator przypisania//
-    ResourceManager& operator=(ResourceManager&&);
+    ResourceManager& operator=(ResourceManager&&)
+    {
+    R         = std::move(RM.R);
+    return *this;
+    }
     
     //destruktor//
     ~ResourceManager()
     {
         delete[] R;
     }
+*/
 
     //Metoda get//
      double get(){return R.get()};
 };
 
-//kopiujacy operator przypisania
-ResourceManager& ResourceManager::operator=(const ResourceManager& RM)
-{
-    if (this != &RM) {
-        delete R;
-
-        R         = new Resource;
-        R=RM;
-
-    }
-    return *this;
-}
-
-
-//przenoszacy operator przypisania
-ResourceManager& ResourceManager::operator=(ResourceManager&& RM)
-{
-    R         = std::move(RM.R);
-    return *this;
-}
 
