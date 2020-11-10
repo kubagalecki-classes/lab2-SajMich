@@ -5,12 +5,10 @@
 class ResourceManager
 {
   public:
-    Resource* R;
-
     //Konstruktor domyslny
     ResourceManager()
     {
-      R= new Resource;
+      R = new Resource;
     };
 
 
@@ -18,13 +16,12 @@ class ResourceManager
     ResourceManager(const ResourceManager& RM)
     {
         R = new Resource;
-        R = RM.R;
+        R = RM.R;  
     }
 
     //kopiujacy opertor przypisania
     ResourceManager& operator=(const ResourceManager&  RM)
     {
-
     if (this != &RM)
      {
         delete R;
@@ -32,7 +29,6 @@ class ResourceManager
         R = RM.R;
       }
     return *this;
-
     }
 
     //konstruktor przenoszacy
@@ -40,7 +36,7 @@ class ResourceManager
     {
         R = new Resource;
         R           = RM.R;
-        RM.R         = nullptr;
+        RM.R         = nullptr; // Czy oprócz wyzerowania wskaźnika trzeba również wykonać delete RM.R ?
     }
 
     //przenoszacy operator przypisania
@@ -60,7 +56,8 @@ class ResourceManager
 
 
     //Metoda get
-     double get() {return R->get()};
+     double get() {return R->get();};
+
+     private:
+      Resource* R;
 };
-
-
