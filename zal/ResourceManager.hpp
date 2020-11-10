@@ -7,48 +7,60 @@ class ResourceManager
   public:
     Resource* R;
 
-
     //Konstruktor domyslny
-    ResourceManager(){};
+    ResourceManager()
+    {
+      R= new Resource;
+    };
 
-/*
+
     //Konstruktor kopiujacy
     ResourceManager(const ResourceManager& RM)
     {
-        R = new Resource[rozmiar];
+        R = new Resource;
         R = RM.R;
     }
 
-    //kopiujacy opertor przypisania//
-    ResourceManager& operator=(const ResourceManager&)
+    //kopiujacy opertor przypisania
+    ResourceManager& operator=(const ResourceManager&  RM)
     {
+
+    if (this != &RM)
+     {
+        delete R;
+        R = new Resource;
+        R = RM.R;
+      }
     return *this;
+
     }
 
-    //konstruktor przenoszacy//
+    //konstruktor przenoszacy
     ResourceManager(ResourceManager&& RM)
     {
+        R = new Resource;
         R           = RM.R;
         RM.R         = nullptr;
-        delete RM.R;
     }
 
-    //przenoszacy operator przypisania//
-    ResourceManager& operator=(ResourceManager&&)
+    //przenoszacy operator przypisania
+    ResourceManager& operator=(ResourceManager&& RM )
     {
-    R         = std::move(RM.R);
-    return *this;
+        delete R;
+        R=RM.R;
+        RM.R = nullptr;
+        return *this;
     }
     
-    //destruktor//
+    //destruktor
     ~ResourceManager()
     {
-        delete[] R;
+        delete R;
     }
-*/
 
-    //Metoda get//
-     double get(){return R.get()};
+
+    //Metoda get
+     double get() {return R->get()};
 };
 
 

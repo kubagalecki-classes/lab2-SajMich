@@ -3,6 +3,14 @@
 class Wektor
 {
 public:
+    Wektor()
+    {
+        dlugosc   = 1;
+        pojemnosc = 1;
+        w         = new double[1];
+        std::cout << "konstruktor domyslny"
+                  << "\n";
+    }
     // konstruktor parametryczny
     Wektor(int n) : dlugosc(n), pojemnosc(n)
     {
@@ -125,6 +133,10 @@ Wektor& Wektor::operator=(Wektor&& W)
 
 int main()
 {
+    Wektor v2;
+    v2.print();
+    std::cout << v2[0] << "\n";
+
     Wektor v1{2};
     v1[0] = 10;
     v1[1] = 6;
