@@ -13,6 +13,7 @@ class ResourceManager
       R= new Resource;
     };
 
+
     //Konstruktor kopiujacy
     ResourceManager(const ResourceManager& RM) { R = new Resource(*(RM.R)); }
 
@@ -22,29 +23,29 @@ class ResourceManager
 
     if (this != &RM)
      {
-            *R = *(RM.R)
+            *R = *(RM.R);
       }
     return *this;
 
     }
-    /*
+    
     //konstruktor przenoszacy
-    ResourceManager(ResourceManager&& RM)
+    ResourceManager(ResourceManager&& RM) : R(RM.R)
     {
-        R = new Resource;
-        R           = RM.R;
         RM.R         = nullptr;
     }
 
     //przenoszacy operator przypisania
     ResourceManager& operator=(ResourceManager&& RM )
     {
+        if (&RM == this)
+            return *this;
         delete R;
         R=RM.R;
         RM.R = nullptr;
         return *this;
     }
-    */
+    
     //destruktor
     ~ResourceManager()
     {
