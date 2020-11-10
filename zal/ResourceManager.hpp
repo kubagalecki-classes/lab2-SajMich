@@ -36,7 +36,7 @@ class ResourceManager
     {
         R = new Resource;
         R           = RM.R;
-        RM.R         = nullptr; // Czy oprócz wyzerowania wskaźnika trzeba również wykonać delete RM.R ?
+        RM.R         = nullptr; 
     }
 
     //przenoszacy operator przypisania
