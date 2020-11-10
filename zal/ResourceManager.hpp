@@ -5,38 +5,35 @@
 class ResourceManager
 {
   public:
+    Resource* R;
+
     //Konstruktor domyslny
     ResourceManager()
     {
-      R = new Resource;
+      R= new Resource;
     };
 
-
     //Konstruktor kopiujacy
-    ResourceManager(const ResourceManager& RM)
-    {
-        R = new Resource;
-        R = RM.R;  
-    }
+    ResourceManager(const ResourceManager& RM) { R = new Resource(*(RM.R)); }
 
     //kopiujacy opertor przypisania
     ResourceManager& operator=(const ResourceManager&  RM)
     {
+
     if (this != &RM)
      {
-        delete R;
-        R = new Resource;
-        R = RM.R;
+            *R = *(RM.R)
       }
     return *this;
-    }
 
+    }
+    /*
     //konstruktor przenoszacy
     ResourceManager(ResourceManager&& RM)
     {
         R = new Resource;
         R           = RM.R;
-        RM.R         = nullptr; 
+        RM.R         = nullptr;
     }
 
     //przenoszacy operator przypisania
@@ -47,7 +44,7 @@ class ResourceManager
         RM.R = nullptr;
         return *this;
     }
-    
+    */
     //destruktor
     ~ResourceManager()
     {
@@ -56,8 +53,7 @@ class ResourceManager
 
 
     //Metoda get
-     double get() {return R->get();};
-
-     private:
-      Resource* R;
+    double get() { return R->get(); };  
 };
+
+
